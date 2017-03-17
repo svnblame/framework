@@ -14,9 +14,6 @@ $context->fromRequest($request);
 $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
 
 try {
-	if ('/' === $request->getPathInfo()) {
-		$_SERVER['REQUEST_URI'] = '/index';
-	}
 	extract($matcher->match($request->getPathInfo()), EXTR_SKIP);
 	ob_start();
 	include sprintf(__DIR__.'/../src/pages/%s.php', $_route);
